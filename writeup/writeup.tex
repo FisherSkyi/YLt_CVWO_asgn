@@ -1,0 +1,128 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{tabularray}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+
+\begin{document}
+
+% Title Block (No Forced Page Break)
+\noindent
+{\LARGE \textbf{Execution Plan for CVWO Assignment}} \\[12pt]
+{\large Yu Letian} \\[6pt]
+{\normalsize December 27, 2024} \\[20pt]
+
+\begin{multicols}{2}  % Start 2-column layout
+
+\section{Objective}
+The goal is to build an online web forum with the following tech stack:
+\begin{itemize}
+    \item \textbf{Frontend:} React.js + TypeScript
+    \item \textbf{Backend:} Ruby on Rails
+    \item \textbf{Database:} SQLite
+\end{itemize}
+
+\noindent The forum must include:
+\begin{itemize}
+    \item An authentication system
+    \item Create, read, update, and delete (CRUD) operations for forum threads and comments
+    \item A tagging system
+\end{itemize}
+
+\section{User Requirements}
+\textbf{User Stories}
+\begin{itemize}
+    \item As a user, I want an authentication system so that I can distinguish different threads and comments made by different people.
+    \item As a user, I want to create, read, update, and delete forum threads and comments (the basic functionality of a web forum).
+    \item As a user, I want a tagging system so I can find topics aligned with my interests.
+\end{itemize}
+
+To be more specific, the web forum will utilize the following HTTP methods to meet the CRUD requirements:
+\begin{itemize}
+    \item \textbf{POST} for creating new threads and comments
+    \item \textbf{GET} for reading threads and comments
+    \item \textbf{PUT} for updating existing threads or comments
+    \item \textbf{DELETE} for deleting threads or comments
+\end{itemize}
+
+\vspace{10pt}
+
+Data includes each thread or comment’s creation time, modification time, content, tagging, and author (by username). Every thread will have a unique ID (e.g., T1, T2, \dots) and every comment will have a unique ID (e.g., C1, C2, \dots). These IDs serve as primary keys in the database.
+
+\vspace{10pt}
+
+There should be two pages:
+\begin{itemize}
+    \item A \textbf{login page}, where users authenticate themselves
+    \item A \textbf{main forum page}, containing thread listings and styled with HTML/CSS
+\end{itemize}
+
+\begin{longtblr}[
+  caption={Use Case}
+]{p{2cm}|p{5cm}}
+\textbf{Use Case} & \textbf{Details} \\ \hline
+Primary actor & Users who want to communicate online \\
+Pre-condition & The user has already authenticated by username \\
+Success end condition & A window appears indicating the thread/comment is successfully created or updated \\
+Failed end condition & A window appears indicating an error occurred \\
+Trigger & Clicking the new thread/comment button \\
+Open issue & What if two users use the same username?  
+            \newline \textit{Proposed fix:} add a postfix number (1, 2, \dots) to distinguish identical usernames \\
+Main process &
+\begin{minipage}[t]{\linewidth}
+    \begin{enumerate}[leftmargin=1em]
+        \item The user enters his/her username.
+        \item The user clicks "New Thread" to open a new window, types in a title, content, and creates a tag for it by using the symbol `\#`.
+        \item The user searches in the search box by tag. Tags are separated with the symbol `\#`.
+        \item The user can view a thread by clicking on it.
+        \item The user can comment by clicking the "Comment" button, but cannot comment on a comment.
+    \end{enumerate}
+\end{minipage} \\
+Details &
+\begin{minipage}[t]{\linewidth}
+    \begin{enumerate}[leftmargin=1em]
+        \item \textbf{(1):} Check if the user is already signed up. 
+              \newline If so, authenticate the user. 
+              \newline If not, add a new username to the database.
+        \item \textbf{(4):} Given a user-input tag, the application searches the database to see if the tag exists, then finds all threads that match the required tags.
+    \end{enumerate}
+\end{minipage} \\
+\end{longtblr}
+
+\section{Learning Approach}
+As a newcomer to web development, I plan to invest significant time in:
+\begin{itemize}[leftmargin=1em]
+    \item \textbf{Fundamentals:}  
+        Understanding how servers, databases, and frontends interact. by going through \href{https://www.theodinproject.com/paths/foundations/courses/foundations}{The Odin Project}. in reflection, this actually take longer time than anticipated.
+    \item \textbf{Framework Proficiency:}  
+        Exploring Ruby on Rails for backend logic, and React.js + TypeScript for frontend components.  
+    \item \textbf{Practice and Examples:}  
+        Play around with the skeleton project, building smaller parts, and experimenting with CRUD functionalities.  
+    \item \textbf{Debugging \& Testing:}  
+        Learning how to troubleshoot issues, write tests, and ensure code reliability.  
+    \item \textbf{Documentation:}  
+        Reading official docs and community resources to stay informed and solve problems efficiently.
+\end{itemize}
+
+\section{Implementation Outline}
+To manage the overall development process, I will:
+\begin{itemize}
+    \item Initialize the project with Rails and set up the database schema for threads and comments.
+    \item Create user authentication mechanisms (sign-up, login, logout) with secure password handling.
+    \item Develop the frontend in React + TypeScript, integrating with Rails through RESTful APIs.
+    \item Add tagging logic and searching functionality for a smoother user experience.
+    \item Continuously test functionality using simple unit tests.
+\end{itemize}
+
+\noindent final modified at January 4, 2025 \\ by Yu Letian
+
+\end{multicols}
+\end{document}
