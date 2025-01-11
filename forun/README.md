@@ -23,6 +23,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-=======
-# YLt_CVWO_asgn
->>>>>>> 40a0f588f8eb39c9859a78d72e026eb29f7f9af3
+
