@@ -1,2 +1,7 @@
-<h1>Posts#destroy</h1>
-<p>Find me in app/views/posts/destroy.html.erb</p>
+<% @posts.each do |post| %>
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p><%= truncate(post.content, length: 100) %></p>
+  
+    <%= link_to "Edit", edit_post_path(post), class: "btn btn-primary" %>
+    <%= link_to "Delete", post_path(post), method: :delete, data: { turbo: false, confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<% end %>

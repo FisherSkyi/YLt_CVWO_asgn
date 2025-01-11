@@ -37,8 +37,14 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path, notice: "Post deleted successfully."
+    Rails.logger.info "Attempting to delete post: #{@post.inspect}"
+    if @post.destroy
+      Rails.logger.info "Post deleted successfully!"
+      redirect_to posts_path, notice: "Post deleted successfully."
+    else
+      Rails.logger.error "Failed to delete post: #{@post.errors.full_messages}"
+      redirect_to post_path(@post), alert: "Failed to delete the post."
+    end
   end
 
 

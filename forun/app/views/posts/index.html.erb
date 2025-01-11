@@ -1,24 +1,30 @@
-<h1>Forum Posts</h1>
+<h1 style="border: 10px solid Canvas;">Forum Posts</h1>
 
-<%= link_to "Create New Post", new_post_path, class: "btn btn-primary" %>
+<%= link_to "Create New Post", new_post_path, class: "btn btn-primary", style: "border: 10px solid Canvas; margin: 20px 0;" %>
 
-<table>
+<table style="width: 100%; border-collapse: collapse ; margin: 20px 0;">
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Actions</th>
+    <tr style="background-color: #f2f2f2;">
+      <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Title</th>
+      <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Author</th>
+      <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @posts.each do |post| %>
+    <% if @posts.any? %>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, post_path(post) %></td>
+          <td><%= post.user.username if post.user %></td>
+          <td>
+            <%= link_to "Edit", edit_post_path(post), class: "btn btn-secondary" %>
+            <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
       <tr>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td><%= post.user.username if post.user %></td>
-        <td>
-          <%= link_to "Edit", edit_post_path(post), class: "btn btn-secondary" %>
-          <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-        </td>
+        <td colspan="3" style="text-align: center;">No posts available. Create a new post to get started!</td>
       </tr>
     <% end %>
   </tbody>
