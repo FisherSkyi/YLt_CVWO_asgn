@@ -30,4 +30,5 @@ Rails.application.routes.draw do
 
   # Additional optional routes (for example, a health check)
   get "health", to: "application#health"
+
 end

@@ -1,5 +1,17 @@
 <h1>Create a New Post</h1>
 
+<% if @post.errors.any? %>
+  <div class="alert alert-danger">
+    <h2><%= pluralize(@post.errors.count, "error") %> prevented this post from being saved:</h2>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_with model: @post, local: true do |form| %>
   <div class="form-group">
     <%= form.label :title, "Post Title" %>
