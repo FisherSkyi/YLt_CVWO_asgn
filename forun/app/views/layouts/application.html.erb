@@ -23,6 +23,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="notice"><%= notice %></div>
+    <nav>
+      <%= link_to "Home", root_path %>
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

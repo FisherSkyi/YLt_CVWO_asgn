@@ -1,18 +1,6 @@
 Rails.application.routes.draw do
-  get "tags/index"
-  get "tags/show"
-  get "tags/create"
-  get "comments/create"
-  get "comments/destroy"
-  get "users/show"
-  get "users/index"
-  get "posts/index"
-  get "posts/show"
-  get "posts/new"
-  get "posts/create"
-  get "posts/edit"
-  get "posts/update"
-  get "posts/destroy"
+
+  resources :posts
   # Home page redirects to the posts index
   root "posts#index"
 
