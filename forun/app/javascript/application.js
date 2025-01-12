@@ -1,3 +1,5 @@
+console.log("JavaScript is loaded");
+
 import Rails from "@rails/ujs";
 Rails.start();
 console.log("Rails UJS loaded");
@@ -39,3 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+import "@hotwired/turbo-rails"

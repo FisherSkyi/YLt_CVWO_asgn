@@ -18,7 +18,7 @@
           <td><%= post.user.username if post.user %></td>
           <td>
             <%= link_to "Edit", edit_post_path(post), class: "btn btn-secondary" %>
-            <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <%= button_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>
