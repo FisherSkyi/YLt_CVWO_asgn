@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
 
   resources :posts
   # Home page redirects to the posts index
   root "posts#index"
 
+  resource :session, only: [:new, :create, :destroy]
+
   # User routes
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show, :index, :new, :create]
 
   # Post routes (with nested comments)
   resources :posts do

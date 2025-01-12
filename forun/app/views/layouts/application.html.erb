@@ -26,6 +26,12 @@
     <div class="notice"><%= notice %></div>
     <nav>
       <%= link_to "Home", root_path %>
+      <% if logged_in? %>
+        <%= link_to "Log out", session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign up", new_user_path %>
+        <%= link_to "Log in", new_session_path %>
+      <% end %>
     </nav>
 
     <main>
