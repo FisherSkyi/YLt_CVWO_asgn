@@ -12,17 +12,27 @@
 <% end %>
 
 <%= form_with model: @post, local: true do |form| %>
-  <div>
-    <%= form.label :title, "Title" %>
-    <%= form.text_field :title, value: @post.title %>
+  <div class="form-group">
+    <%= form.label :title, "Post Title" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Your eye-catching title goes here" %>
   </div>
 
-  <div>
-    <%= form.label :content, "Content" %>
-    <%= form.text_area :content, value: @post.content %>
+  <div class="form-group">
+    <%= form.label :content, "Post Content" %>
+    <%= form.text_area :content, class: "form-control", rows: 2, placeholder: "Write the content of your post here" %>
   </div>
 
-  <div>
+  <div class="form-group">
+    <%= form.label :tag_ids, "Tags" %>
+    <%= form.collection_select :tag_ids, Tag.all, :id, :name, {}, { multiple: true, class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :new_tags, "New Tags (comma separated)" %>
+    <%= form.text_field :new_tags, class: "form-control", placeholder: "Enter new tags separated by commas" %>
+  </div>
+
+  <div class="form-group">
     <%= form.submit "Update Post", class: "btn btn-primary" %>
   </div>
 <% end %>

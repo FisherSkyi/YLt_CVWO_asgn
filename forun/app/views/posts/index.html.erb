@@ -7,24 +7,32 @@
     <tr style="background-color: #f2f2f2;">
       <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Title</th>
       <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Author</th>
-      <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Actions</th>
+      <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Tags</th>
+      <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Actions (Only Available for your posts)</th>
     </tr>
   </thead>
   <tbody>
     <% if @posts.any? %>
       <% @posts.each do |post| %>
         <tr>
-          <td style="width: 33.3%; border: 1px solid #ccc; padding: 8px; text-align: left;"><%= link_to post.title, post_path(post) %></td>
-          <td style="width: 33.3%; border: 1px solid #ccc; padding: 8px; text-align: left;"><%= post.user.username if post.user %></td>
-          <td style="width: 33.3%; border: 1px solid #ccc; padding: 8px; text-align: left;">
-            <%= link_to "Edit", edit_post_path(post), class: "btn btn-secondary" %>
-            <%= button_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <td style="width: 25%; border: 1px solid #ccc; padding: 8px; text-align: left;"><%= link_to post.title, post_path(post) %></td>
+          <td style="width: 25%; border: 1px solid #ccc; padding: 8px; text-align: left;"><%= post.user.username %></td>
+          <td style="width: 25%; border: 1px solid #ccc; padding: 8px; text-align: left;">
+            <% post.tags.each do |tag| %>
+              <%= link_to tag.name, tag_path(tag), class: "badge badge-primary" %>
+            <% end %>
+          </td>
+          <td style="width: 25%; border: 1px solid #ccc; padding: 8px; text-align: left;">
+            <% if post.user == current_user %>
+              <%= link_to "Edit", edit_post_path(post), class: "btn btn-secondary" %>
+              <%= button_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <% end %>
           </td>
         </tr>
       <% end %>
     <% else %>
       <tr>
-        <td colspan="3" style="text-align: center;">No posts available. Create a new post to get started!</td>
+        <td colspan="4" style="text-align: center;">No posts available. Create a new post to get started!</td>
       </tr>
     <% end %>
   </tbody>
