@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :posts
   # Home page redirects to the posts index
   root "posts#index"
 
@@ -12,7 +11,7 @@ Rails.application.routes.draw do
   # Post routes (with nested comments)
   resources :posts do
     resources :comments, only: [:create, :destroy] # Comments nested under posts
-    resources :tags, only: [:index, :create], shallow: true # Tags nested under posts
+    # resources :tags, only: [:index, :create], shallow: true # Tags nested under posts
   end
 
   # Tag routes (view posts by a specific tag)
